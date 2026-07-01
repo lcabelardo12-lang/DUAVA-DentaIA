@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>DentalA - Asistente Dental</title>
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#2C2C2E">
+<meta name="theme-color" content="#F5F0E8">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="icon" type="image/png" href="logo.png">
 <link rel="apple-touch-icon" href="logo.png">
@@ -16,61 +16,126 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{font-family:'Inter',system-ui,sans-serif;background:#1A1A1D;height:100vh;height:100dvh;display:flex;flex-direction:column;overflow:hidden}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:#F5F0E8;
+  height:100vh;height:100dvh;display:flex;flex-direction:column;overflow:hidden;
+  color:#4A4540;
+}
 
-.chat-header{background:#2C2C2E;padding:14px 20px;display:flex;align-items:center;gap:12px;border-bottom:2px solid #7B1E3A;flex-shrink:0}
+.chat-header{
+  background:#FAF8F5;
+  padding:14px 20px;
+  display:flex;align-items:center;gap:12px;
+  border-bottom:2px solid #8B7355;
+  flex-shrink:0;
+}
 .chat-header img{width:36px;height:36px;border-radius:10px;flex-shrink:0}
-.chat-header-info h1{font-size:1em;font-weight:700;color:#F5F5F5;letter-spacing:.3px;margin:0;line-height:1.2}
-.chat-header-info p{font-size:.7em;color:#9E9E9E;margin:0}
+.chat-header-info h1{font-size:1em;font-weight:700;color:#4A4540;letter-spacing:.3px;margin:0;line-height:1.2}
+.chat-header-info p{font-size:.7em;color:#9E9A93;margin:0}
 
-.chat-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth}
+.chat-messages{
+  flex:1;overflow-y:auto;padding:16px;
+  display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth;
+  background:#F5F0E8;
+}
 .chat-messages::-webkit-scrollbar{width:3px}
-.chat-messages::-webkit-scrollbar-thumb{background:#444;border-radius:2px}
+.chat-messages::-webkit-scrollbar-thumb{background:#D4C8B8;border-radius:2px}
 
 .msg{max-width:85%;padding:14px 16px;border-radius:16px;font-size:.9em;line-height:1.6;word-wrap:break-word;animation:msgIn .3s ease;white-space:pre-wrap}
 @keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
-.msg-user{background:linear-gradient(135deg,#7B1E3A,#5C1638);color:#F5F5F5;align-self:flex-end;border-bottom-right-radius:4px}
+.msg-user{
+  background:#8B7355;
+  color:#FAF8F5;
+  align-self:flex-end;
+  border-bottom-right-radius:4px;
+}
 
-.msg-ia{background:#2C2C2E;color:#E0E0E0;align-self:flex-start;border-bottom-left-radius:4px;border:1px solid #3A3A3E}
-.msg-ia .msg-label{font-size:.7em;color:#7B1E3A;font-weight:600;margin-bottom:6px;display:block}
+.msg-ia{
+  background:#FFFFFF;
+  color:#4A4540;
+  align-self:flex-start;
+  border-bottom-left-radius:4px;
+  border:1px solid #E0DCD4;
+  box-shadow:0 1px 4px rgba(0,0,0,.04);
+}
+.msg-ia .msg-label{font-size:.7em;color:#8B7355;font-weight:600;margin-bottom:6px;display:block}
 
-.msg-error{background:#2D1B1B;color:#E57373;border:1px solid rgba(229,115,113,.2);align-self:flex-start}
+.msg-error{
+  background:#FFF0F0;
+  color:#C75B5B;
+  border:1px solid rgba(199,91,91,.2);
+  align-self:flex-start;
+}
 
-.msg-welcome{text-align:center;color:#9E9E9E;padding:40px 20px;font-size:.9em;line-height:1.7}
+.msg-welcome{text-align:center;color:#9E9A93;padding:40px 20px;font-size:.9em;line-height:1.7}
 .msg-welcome .icon{font-size:2.5em;margin-bottom:12px;display:block}
-.msg-welcome strong{color:#F5F5F5}
+.msg-welcome strong{color:#4A4540}
 
 .msg-actions{display:flex;gap:6px;margin-top:10px;justify-content:flex-end}
-.msg-action-btn{background:rgba(123,30,58,.2);border:1px solid rgba(123,30,58,.3);color:#C76B98;padding:5px 12px;border-radius:8px;font-size:.72em;cursor:pointer;font-weight:600}
-.msg-action-btn:active{background:rgba(123,30,58,.4)}
+.msg-action-btn{
+  background:rgba(139,115,85,.1);
+  border:1px solid rgba(139,115,85,.25);
+  color:#8B7355;
+  padding:5px 12px;border-radius:8px;font-size:.72em;cursor:pointer;font-weight:600;
+}
+.msg-action-btn:active{background:rgba(139,115,85,.2)}
 
-.chat-input-area{background:#2C2C2E;border-top:1px solid #3A3A3E;padding:12px 16px;flex-shrink:0}
+.chat-input-area{
+  background:#FAF8F5;
+  border-top:1px solid #E0DCD4;
+  padding:12px 16px;
+  flex-shrink:0;
+}
 
 .largo-selector{display:flex;gap:6px;margin-bottom:10px;justify-content:center}
-.largo-btn{padding:6px 14px;border:1.5px solid #3A3A3E;background:transparent;border-radius:20px;color:#9E9E9E;font-size:.75em;font-weight:600;cursor:pointer;transition:all .2s}
-.largo-btn.active{background:#7B1E3A;border-color:#7B1E3A;color:#F5F5F5}
+.largo-btn{
+  padding:6px 14px;border:1.5px solid #D4C8B8;background:transparent;
+  border-radius:20px;color:#9E9A93;font-size:.75em;font-weight:600;cursor:pointer;transition:all .2s;
+}
+.largo-btn.active{background:#8B7355;border-color:#8B7355;color:#FAF8F5}
 .largo-btn:active{transform:scale(.95)}
 
 .input-row{display:flex;gap:8px;align-items:flex-end}
-.input-field{flex:1;background:#1A1A1D;border:2px solid #3A3A3E;border-radius:14px;padding:12px 16px;color:#F5F5F5;font-size:.95em;font-family:inherit;outline:none;resize:none;min-height:48px;max-height:120px;line-height:1.4;transition:border .2s}
-.input-field:focus{border-color:#7B1E3A}
-.input-field::placeholder{color:#5A5A5E}
+.input-field{
+  flex:1;background:#FFFFFF;
+  border:2px solid #E0DCD4;border-radius:14px;
+  padding:12px 16px;color:#4A4540;font-size:.95em;
+  font-family:inherit;outline:none;resize:none;
+  min-height:48px;max-height:120px;line-height:1.4;transition:border .2s;
+}
+.input-field:focus{border-color:#8B7355}
+.input-field::placeholder{color:#C4BFB8}
 
-.send-btn{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#7B1E3A,#5C1638);border:none;color:#F5F5F5;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+.send-btn{
+  width:48px;height:48px;border-radius:14px;
+  background:linear-gradient(135deg,#8B7355,#6B5B45);
+  border:none;color:#FAF8F5;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;
+}
 .send-btn:active{transform:scale(.93)}
-.send-btn:disabled{background:#3A3A3E;cursor:not-allowed}
+.send-btn:disabled{background:#D4C8B8;cursor:not-allowed}
 .send-btn svg{width:22px;height:22px}
 
-.typing{display:flex;gap:5px;padding:14px 16px;align-self:flex-start;background:#2C2C2E;border-radius:16px;border-bottom-left-radius:4px;border:1px solid #3A3A3E}
-.typing span{width:8px;height:8px;background:#7B1E3A;border-radius:50%;animation:bounce .6s infinite alternate}
+.typing{
+  display:flex;gap:5px;padding:14px 16px;align-self:flex-start;
+  background:#FFFFFF;border-radius:16px;border-bottom-left-radius:4px;
+  border:1px solid #E0DCD4;
+}
+.typing span{width:8px;height:8px;background:#8B7355;border-radius:50%;animation:bounce .6s infinite alternate}
 .typing span:nth-child(2){animation-delay:.2s}
 .typing span:nth-child(3){animation-delay:.4s}
 @keyframes bounce{to{opacity:.3;transform:translateY(-4px)}}
 
 .sugerencias{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:10px}
-.sug-btn{padding:6px 12px;background:rgba(123,30,58,.12);border:1px solid rgba(123,30,58,.25);border-radius:10px;color:#C76B98;font-size:.75em;cursor:pointer;font-weight:500}
-.sug-btn:active{background:rgba(123,30,58,.3)}
+.sug-btn{
+  padding:6px 12px;
+  background:rgba(139,115,85,.08);
+  border:1px solid rgba(139,115,85,.2);
+  border-radius:10px;color:#8B7355;font-size:.75em;cursor:pointer;font-weight:500;
+}
+.sug-btn:active{background:rgba(139,115,85,.2)}
 </style>
 </head>
 <body>
@@ -85,14 +150,14 @@ body{font-family:'Inter',system-ui,sans-serif;background:#1A1A1D;height:100vh;he
 
 <div class="chat-messages" id="chatMessages">
   <div class="msg-welcome">
-    <span class="icon">ðŸ¦·</span>
+    <span class="icon"></span>
     <strong>Asistente Dental DUAVA</strong><br><br>
-    Hazme preguntas sobre productos odontolÃ³gicos. Tengo informaciÃ³n tÃ©cnica, indicaciones, contraindicaciones y disponibilidad.
+    Hazme preguntas sobre productos odontológicos. Tengo información técnica, indicaciones, contraindicaciones y disponibilidad.
     <div class="sugerencias">
-      <button class="sug-btn" onclick="preguntaRapida('Â¿QuÃ© resina me recomiendas para posteriores?')">Resinas para posteriores</button>
-      <button class="sug-btn" onclick="preguntaRapida('Â¿QuÃ© productos tienen de Vigodent?')">Productos Vigodent</button>
-      <button class="sug-btn" onclick="preguntaRapida('Â¿Tienen Fill Magic en stock?')">Stock Fill Magic</button>
-      <button class="sug-btn" onclick="preguntaRapida('Â¿Para quÃ© sirve la resina Fill Magic?')">Indicaciones Fill Magic</button>
+      <button class="sug-btn" onclick="preguntaRapida('¿Qué resina me recomiendas para posteriores?')">Resinas para posteriores</button>
+      <button class="sug-btn" onclick="preguntaRapida('¿Qué productos tienen de Vigodent?')">Productos Vigodent</button>
+      <button class="sug-btn" onclick="preguntaRapida('¿Tienen Fill Magic en stock?')">Stock Fill Magic</button>
+      <button class="sug-btn" onclick="preguntaRapida('¿Para qué sirve la resina Fill Magic?')">Indicaciones Fill Magic</button>
     </div>
   </div>
 </div>
@@ -198,7 +263,7 @@ async function enviarPregunta() {
     }
   } catch (e) {
     ocultarTyping();
-    agregarMsg('Error de conexiÃ³n. Verifica tu internet e intenta de nuevo.', 'error');
+    agregarMsg('Error de conexión. Verifica tu internet e intenta de nuevo.', 'error');
   }
 
   btn.disabled = false;
