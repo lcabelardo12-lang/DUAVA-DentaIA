@@ -2,10 +2,10 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>OMNIA - DUAVA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>OMNIA · DUAVA</title>
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#F5F0E8">
+<meta name="theme-color" content="#0c1f33">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="mobile-web-app-capable" content="yes">
@@ -13,311 +13,507 @@
 <link rel="apple-touch-icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{
-  font-family:'Inter',system-ui,sans-serif;
-  background:#F5F0E8;
-  height:100vh;height:100dvh;display:flex;flex-direction:column;overflow:hidden;
-  color:#4A4540;
-}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--bg:#f6f7f9;--surface:#fff;--s2:#f0f1f4;--s3:#e8eaef;--navy:#0c1f33;--navy2:#14304d;--navy3:#1b4670;--turq:#0fb5ae;--turq-bg:rgba(15,181,174,.06);--turq-bg2:rgba(15,181,174,.12);--gold:#c9a05c;--gold-bg:rgba(201,160,92,.08);--t1:#111827;--t2:#4b5563;--t3:#9ca3af;--t4:#d1d5db;--bdr:#e5e7eb;--sh2:0 4px 20px rgba(12,31,51,.06);--glow:0 0 0 3px rgba(15,181,174,.1),0 0 30px rgba(15,181,174,.06);--r:14px;--r2:20px;--disp:'Instrument Serif',Georgia,serif;--body:'DM Sans',-apple-system,sans-serif}
+html,body{height:100%;overflow:hidden;background:var(--bg)}
+body{font-family:var(--body);color:var(--t1);line-height:1.6;-webkit-font-smoothing:antialiased}
+.app{display:flex;flex-direction:column;height:100vh;height:100dvh}
 
-.chat-header{
-  background:#FAF8F5;
-  padding:18px 20px;
-  display:flex;align-items:center;gap:12px;
-  border-bottom:2px solid #8B7355;
-  flex-shrink:0;
-}
-.chat-header img{width:40px;height:40px;border-radius:10px;flex-shrink:0}
-.chat-header-info h1{
-  font-size:1.5rem;font-weight:800;color:#4A4540;letter-spacing:.5px;margin:0;line-height:1.2;
-}
-.chat-header-info p{font-size:.85rem;color:#9E9A93;margin:0;font-weight:500;}
+/* HEADER */
+.hdr{background:rgba(246,247,249,.88);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--bdr);height:58px;flex-shrink:0;padding:0 20px;display:flex;align-items:center}
+.hdr-in{max-width:860px;margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-i{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--navy),var(--navy3),var(--turq));display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.brand-i span{font-family:var(--disp);font-size:17px;color:var(--gold);font-style:italic}
+.brand-t{display:flex;flex-direction:column;line-height:1.15}
+.brand-n{font-family:var(--disp);font-size:20px;color:var(--navy);letter-spacing:2.5px;font-style:italic}
+.brand-s{font-size:8.5px;font-weight:600;color:var(--t3);letter-spacing:2.5px;text-transform:uppercase}
+.hdr-r{display:flex;gap:6px;align-items:center}
+.h-btn{height:34px;border-radius:9px;border:1px solid var(--bdr);background:var(--surface);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;color:var(--t2);font-family:inherit;font-size:12px;font-weight:600}
+.h-btn:hover{border-color:var(--turq);color:var(--turq)}
+.h-btn svg{width:15px;height:15px}
+.h-btn.icon{width:34px}
+.h-btn.text{padding:0 14px;gap:5px}
 
-.chat-messages{
-  flex:1;overflow-y:auto;padding:16px;
-  display:flex;flex-direction:column;gap:14px;scroll-behavior:smooth;
-  background:#F5F0E8;
-}
-.chat-messages::-webkit-scrollbar{width:3px}
-.chat-messages::-webkit-scrollbar-thumb{background:#D4C8B8;border-radius:2px}
+/* MAIN */
+.main{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
 
-.msg{
-  max-width:85%;padding:16px 18px;border-radius:18px;
-  font-size:1rem;line-height:1.6;word-wrap:break-word;animation:msgIn .3s ease;white-space:pre-wrap;
-  font-weight:500;
-}
+/* HOME */
+.home{padding-top:44px;padding-bottom:100px}
+.home.off{display:none}
+
+/* Hero */
+.hero{text-align:center;margin-bottom:40px;opacity:0;animation:rise .7s ease forwards}
+@keyframes rise{to{opacity:1;transform:translateY(0)}}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:7px;padding:5px 14px;border-radius:99px;background:var(--gold-bg);border:1px solid rgba(201,160,92,.18);font-size:10.5px;font-weight:600;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:22px}
+.hero-eyebrow i{width:5px;height:5px;border-radius:50%;background:var(--gold);display:block;animation:blink 2.2s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-family:var(--disp);font-size:clamp(44px,9vw,80px);font-weight:400;color:var(--navy);letter-spacing:10px;line-height:.95;font-style:italic;margin-bottom:10px;background:linear-gradient(160deg,var(--navy) 30%,var(--navy3) 60%,var(--turq) 95%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-rule{width:44px;height:1.5px;margin:0 auto 18px;background:linear-gradient(90deg,var(--gold),var(--turq));border-radius:2px}
+.hero p{font-family:var(--disp);font-size:clamp(15px,2.6vw,18px);color:var(--t2);font-style:italic;line-height:1.6}
+.hero p small{display:block;font-family:var(--body);font-size:11px;font-style:normal;color:var(--t3);letter-spacing:1.8px;text-transform:uppercase;margin-top:8px;font-weight:500}
+
+/* Ask box */
+.ask{margin-bottom:36px;opacity:0;animation:rise .7s ease .12s forwards}
+.ask-box{background:var(--surface);border:1.5px solid var(--bdr);border-radius:var(--r2);box-shadow:var(--sh2);transition:all .25s ease;overflow:hidden}
+.ask-box:focus-within{border-color:var(--turq);box-shadow:var(--sh2),var(--glow);transform:translateY(-2px)}
+.ask-top{display:flex;align-items:flex-end;padding:4px}
+.ask-box textarea{flex:1;min-height:54px;max-height:180px;padding:14px 16px;border:none;outline:none;resize:none;font-family:var(--body);font-size:15px;color:var(--t1);background:transparent;line-height:1.55;font-weight:500}
+.ask-box textarea::placeholder{color:var(--t4)}
+.ask-send{width:42px;height:42px;border-radius:12px;border:none;background:linear-gradient(135deg,var(--navy),var(--turq));color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;margin:6px;flex-shrink:0;box-shadow:0 3px 14px rgba(15,181,174,.28)}
+.ask-send:hover{transform:scale(1.07)}
+.ask-send:active{transform:scale(.94)}
+.ask-send:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.ask-send svg{width:17px;height:17px}
+.ask-bar{display:flex;align-items:center;justify-content:space-between;padding:5px 12px;border-top:1px solid var(--s2);background:var(--bg)}
+.ask-tools{display:flex;gap:2px}
+.a-t{width:34px;height:34px;border-radius:9px;border:none;background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;color:var(--t3)}
+.a-t:hover{background:var(--s2);color:var(--turq)}
+.a-t svg{width:16px;height:16px}
+.ask-hint{font-size:10px;color:var(--t4)}
+
+/* Largo */
+.largo-home{display:flex;gap:6px;align-items:center;justify-content:center;margin-bottom:16px;opacity:0;animation:rise .7s ease .08s forwards}
+.largo-home span{font-size:10.5px;font-weight:600;color:var(--t3);letter-spacing:1px;text-transform:uppercase}
+.lh-btn{padding:5px 14px;border:1.5px solid var(--bdr);background:var(--surface);border-radius:99px;font-family:var(--body);font-size:11px;font-weight:600;color:var(--t3);cursor:pointer;transition:all .2s}
+.lh-btn:hover{border-color:var(--turq);color:var(--turq)}
+.lh-btn.active{background:var(--navy);border-color:var(--navy);color:#fff}
+
+/* Auto */
+.auto{display:flex;align-items:center;gap:10px;padding:11px 16px;margin-bottom:32px;background:var(--turq-bg);border:1px solid rgba(15,181,174,.1);border-radius:var(--r);opacity:0;animation:rise .7s ease .2s forwards}
+.auto svg{width:15px;height:15px;color:var(--turq);flex-shrink:0}
+.auto span{font-size:12px;color:var(--t2);font-weight:500}
+
+/* Sections */
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.sec-t{font-size:10.5px;font-weight:700;color:var(--t3);letter-spacing:2.5px;text-transform:uppercase;white-space:nowrap}
+.sec-line{flex:1;height:1px;background:var(--bdr)}
+
+/* Specialists */
+.specs{margin-bottom:36px;opacity:0;animation:rise .7s ease .28s forwards}
+.spec-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media(max-width:560px){.spec-grid{grid-template-columns:repeat(2,1fr)}}
+.s-card{background:var(--surface);border:1px solid var(--bdr);border-radius:var(--r);padding:16px 10px 14px;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;transition:all .3s ease;opacity:0;animation:pop .45s ease forwards}
+@keyframes pop{to{opacity:1;transform:translateY(0)}}
+.s-card:hover{border-color:var(--turq);box-shadow:var(--sh2);transform:translateY(-3px)}
+.s-card:active{transform:scale(.97)}
+.s-ico{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;transition:transform .3s}
+.s-card:hover .s-ico{transform:scale(1.12) rotate(-3deg)}
+.s-ico.i-od{background:linear-gradient(135deg,#e8f5e9,#c8e6c9);color:#2e7d32}
+.s-ico.i-co{background:linear-gradient(135deg,#e3f2fd,#bbdefb);color:#1565c0}
+.s-ico.i-es{background:linear-gradient(135deg,#ede7f6,#d1c4e9);color:#5e35b1}
+.s-ico.i-mk{background:linear-gradient(135deg,#fce4ec,#f8bbd0);color:#c62828}
+.s-ico.i-fi{background:var(--gold-bg);color:var(--gold)}
+.s-ico.i-ma{background:var(--turq-bg);color:var(--turq)}
+.s-ico.i-bk{background:linear-gradient(135deg,#f3e5f5,#e1bee7);color:#7b1fa2}
+.s-ico.i-ad{background:linear-gradient(135deg,#eceff1,#cfd8dc);color:#546e7a}
+.s-name{font-size:11.5px;font-weight:600;color:var(--t1);text-align:center;line-height:1.3}
+.s-dsc{font-size:9.5px;color:var(--t3);text-align:center;line-height:1.3;margin-top:-4px}
+.s-card:nth-child(1){animation-delay:.32s}.s-card:nth-child(2){animation-delay:.37s}
+.s-card:nth-child(3){animation-delay:.42s}.s-card:nth-child(4){animation-delay:.47s}
+.s-card:nth-child(5){animation-delay:.52s}.s-card:nth-child(6){animation-delay:.57s}
+.s-card:nth-child(7){animation-delay:.62s}.s-card:nth-child(8){animation-delay:.67s}
+
+/* Recent */
+.recent{opacity:0;animation:rise .7s ease .4s forwards}
+.r-list{display:flex;flex-direction:column;gap:5px}
+.r-item{display:flex;align-items:center;gap:12px;padding:13px 14px;background:var(--surface);border:1px solid var(--bdr);border-radius:var(--r);cursor:pointer;transition:all .25s ease;position:relative;overflow:hidden}
+.r-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2.5px;background:linear-gradient(180deg,var(--turq),var(--navy));opacity:0;transition:opacity .25s}
+.r-item:hover{border-color:var(--turq);box-shadow:var(--sh2);transform:translateX(3px)}
+.r-item:hover::before{opacity:1}
+.r-ico{width:34px;height:34px;border-radius:9px;background:var(--s2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.r-ico svg{width:14px;height:14px;color:var(--t3)}
+.r-body{flex:1;min-width:0}
+.r-title{font-size:13.5px;font-weight:600;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.r-meta{font-size:10.5px;color:var(--t3);display:flex;align-items:center;gap:6px;margin-top:1px}
+.r-dot{width:3px;height:3px;border-radius:50%;background:var(--t4)}
+.r-del{width:28px;height:28px;border-radius:7px;border:none;background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;color:var(--t4);flex-shrink:0}
+.r-del:hover{background:rgba(220,53,69,.08);color:#dc3545}
+.r-del svg{width:14px;height:14px}
+.r-empty{text-align:center;padding:20px;font-size:13px;color:var(--t4)}
+
+/* CHAT */
+.chat{display:none;flex-direction:column;height:100%}
+.chat.on{display:flex}
+.chat-bar{padding:12px 20px;border-bottom:1px solid var(--bdr);background:rgba(246,247,249,.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;align-items:center;gap:10px;flex-shrink:0}
+.bk{width:34px;height:34px;border-radius:9px;border:1px solid var(--bdr);background:var(--surface);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;color:var(--t2);flex-shrink:0}
+.bk:hover{border-color:var(--turq);color:var(--turq)}
+.bk svg{width:16px;height:16px}
+.chat-info{flex:1;min-width:0}
+.chat-t{font-size:14px;font-weight:700;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chat-st{font-size:10.5px;color:var(--t3);display:flex;align-items:center;gap:5px}
+.chat-st .live{width:5px;height:5px;border-radius:50%;background:var(--turq);animation:blink 1.5s ease infinite}
+.save-btn{padding:0 12px;height:34px;border-radius:9px;border:1px solid var(--bdr);background:var(--surface);display:flex;align-items:center;gap:5px;cursor:pointer;transition:all .2s;font-family:inherit;font-size:11px;font-weight:600;color:var(--gold);flex-shrink:0}
+.save-btn:hover{border-color:var(--gold);background:var(--gold-bg)}
+.save-btn svg{width:14px;height:14px}
+.save-btn.saved{color:var(--turq);border-color:var(--turq);background:var(--turq-bg)}
+.msgs{flex:1;overflow-y:auto;padding:20px;-webkit-overflow-scrolling:touch;background:var(--bg)}
+.msgs-in{max-width:740px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.msg{max-width:85%;padding:14px 18px;border-radius:18px;font-size:.95rem;line-height:1.7;word-wrap:break-word;animation:msgIn .3s ease;white-space:pre-wrap;font-weight:500}
 @keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-
-.msg-user{
-  background:#8B7355;
-  color:#FAF8F5;
-  align-self:flex-end;
-  border-bottom-right-radius:4px;
-  font-weight:600;
-}
-
-.msg-ia{
-  background:#FFFFFF;
-  color:#4A4540;
-  align-self:flex-start;
-  border-bottom-left-radius:4px;
-  border:1px solid #E0DCD4;
-  box-shadow:0 2px 8px rgba(0,0,0,.06);
-  font-weight:500;
-}
-.msg-ia .msg-label{
-  font-size:.8rem;color:#8B7355;font-weight:700;margin-bottom:8px;display:block;
-  letter-spacing:.5px;
-}
-
-.msg-error{
-  background:#FFF0F0;
-  color:#C75B5B;
-  border:1px solid rgba(199,91,91,.2);
-  align-self:flex-start;
-  font-weight:500;
-}
-
-.msg-welcome{text-align:center;color:#9E9A93;padding:40px 20px;font-size:1rem;line-height:1.8}
-.msg-welcome .icon{font-size:2.5em;margin-bottom:12px;display:block}
-.msg-welcome strong{color:#4A4540;font-size:1.2rem;}
-
+.msg-user{background:linear-gradient(135deg,var(--navy),var(--navy2));color:rgba(255,255,255,.92);align-self:flex-end;border-bottom-right-radius:4px;font-weight:600}
+.msg-ia{background:var(--surface);color:var(--t1);align-self:flex-start;border-bottom-left-radius:4px;border:1px solid var(--bdr);box-shadow:var(--sh2)}
+.msg-ia .msg-label{font-size:.8rem;color:var(--turq);font-weight:700;margin-bottom:8px;display:block;letter-spacing:.5px}
+.msg-error{background:rgba(199,91,91,.08);color:#b33;border:1px solid rgba(199,91,91,.15);align-self:flex-start}
 .msg-actions{display:flex;gap:8px;margin-top:10px;justify-content:flex-end}
-.msg-action-btn{
-  background:rgba(139,115,85,.1);
-  border:1px solid rgba(139,115,85,.25);
-  color:#8B7355;
-  padding:6px 14px;border-radius:8px;font-size:.8rem;cursor:pointer;font-weight:600;
-}
-.msg-action-btn:active{background:rgba(139,115,85,.2)}
-
-.chat-input-area{
-  background:#FAF8F5;
-  border-top:1px solid #E0DCD4;
-  padding:14px 16px;
-  flex-shrink:0;
-}
-
-.largo-selector{display:flex;gap:8px;margin-bottom:12px;justify-content:center}
-.largo-btn{
-  padding:7px 16px;border:1.5px solid #D4C8B8;background:transparent;
-  border-radius:20px;color:#9E9A93;font-size:.8rem;font-weight:700;cursor:pointer;transition:all .2s;
-}
-.largo-btn.active{background:#8B7355;border-color:#8B7355;color:#FAF8F5}
-.largo-btn:active{transform:scale(.95)}
-
-.input-row{display:flex;gap:8px;align-items:flex-end}
-.input-field{
-  flex:1;background:#FFFFFF;
-  border:2px solid #E0DCD4;border-radius:14px;
-  padding:14px 16px;color:#4A4540;font-size:1rem;
-  font-family:inherit;outline:none;resize:none;
-  min-height:48px;max-height:120px;line-height:1.4;transition:border .2s;
-  font-weight:500;
-}
-.input-field:focus{border-color:#8B7355}
-.input-field::placeholder{color:#C4BFB8;font-weight:400}
-
-.send-btn{
-  width:48px;height:48px;border-radius:14px;
-  background:linear-gradient(135deg,#8B7355,#6B5B45);
-  border:none;color:#FAF8F5;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;
-}
-.send-btn:active{transform:scale(.93)}
-.send-btn:disabled{background:#D4C8B8;cursor:not-allowed}
-.send-btn svg{width:22px;height:22px}
-
-.typing{
-  display:flex;gap:6px;padding:16px 18px;align-self:flex-start;
-  background:#FFFFFF;border-radius:18px;border-bottom-left-radius:4px;
-  border:1px solid #E0DCD4;
-}
-.typing span{width:9px;height:9px;background:#8B7355;border-radius:50%;animation:bounce .6s infinite alternate}
+.msg-action-btn{background:var(--turq-bg);border:1px solid rgba(15,181,174,.15);color:var(--turq);padding:5px 12px;border-radius:8px;font-size:.75rem;cursor:pointer;font-weight:600;font-family:var(--body)}
+.msg-action-btn:active{background:var(--turq-bg2)}
+.typing{display:flex;gap:5px;padding:14px 18px;align-self:flex-start;background:var(--surface);border-radius:18px;border-bottom-left-radius:4px;border:1px solid var(--bdr)}
+.typing span{width:7px;height:7px;background:var(--turq);border-radius:50%;animation:tb .6s infinite alternate}
 .typing span:nth-child(2){animation-delay:.2s}
 .typing span:nth-child(3){animation-delay:.4s}
-@keyframes bounce{to{opacity:.3;transform:translateY(-4px)}}
+@keyframes tb{to{opacity:.3;transform:translateY(-4px)}}
 
-.sugerencias{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px}
-.sug-btn{
-  padding:8px 14px;
-  background:rgba(139,115,85,.08);
-  border:1px solid rgba(139,115,85,.2);
-  border-radius:10px;color:#8B7355;font-size:.8rem;cursor:pointer;font-weight:600;
-}
-.sug-btn:active{background:rgba(139,115,85,.2)}
+/* Chat input */
+.c-input{padding:12px 20px 16px;background:rgba(246,247,249,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid var(--bdr);flex-shrink:0}
+.c-in{max-width:740px;margin:0 auto}
+.c-largo{display:flex;gap:6px;margin-bottom:10px;justify-content:center}
+.cl-btn{padding:5px 14px;border:1.5px solid var(--bdr);background:var(--surface);border-radius:99px;font-family:var(--body);font-size:11px;font-weight:600;color:var(--t3);cursor:pointer;transition:all .2s}
+.cl-btn:hover{border-color:var(--turq);color:var(--turq)}
+.cl-btn.active{background:var(--navy);border-color:var(--navy);color:#fff}
+.c-box{display:flex;gap:8px;align-items:flex-end}
+.c-field{flex:1;background:var(--surface);border:1.5px solid var(--bdr);border-radius:var(--r);padding:12px 16px;color:var(--t1);font-size:.95rem;font-family:var(--body);outline:none;resize:none;min-height:46px;max-height:120px;line-height:1.4;font-weight:500;transition:border .2s}
+.c-field:focus{border-color:var(--turq);box-shadow:var(--glow)}
+.c-field::placeholder{color:var(--t4)}
+.c-send{width:46px;height:46px;border-radius:12px;border:none;background:linear-gradient(135deg,var(--navy),var(--turq));color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;box-shadow:0 3px 14px rgba(15,181,174,.28)}
+.c-send:active{transform:scale(.93)}
+.c-send:disabled{opacity:.4;cursor:not-allowed}
+.c-send svg{width:20px;height:20px}
+.chat-sug{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:0 20px 16px;max-width:740px;margin:0 auto}
+.cs-btn{padding:7px 13px;background:var(--turq-bg);border:1px solid rgba(15,181,174,.12);border-radius:10px;color:var(--turq);font-size:.8rem;cursor:pointer;font-weight:600;font-family:var(--body)}
+.cs-btn:active{background:var(--turq-bg2)}
+
+/* Scrollbar */
+.main::-webkit-scrollbar,.msgs::-webkit-scrollbar{width:5px}
+.main::-webkit-scrollbar-track,.msgs::-webkit-scrollbar-track{background:transparent}
+.main::-webkit-scrollbar-thumb,.msgs::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:10px}
 </style>
 </head>
 <body>
+<div class="app">
 
-<div class="chat-header">
-  <img src="logo.png" alt="OMNIA" onerror="this.style.display='none'">
-  <div class="chat-header-info">
-    <h1>OMNIA</h1>
-    <p>Todo el conocimiento de DUAVA. Una sola inteligencia</p>
+<header class="hdr">
+<div class="hdr-in">
+  <div class="brand">
+    <div class="brand-i"><span>O</span></div>
+    <div class="brand-t"><span class="brand-n">OMNIA</span><span class="brand-s">by DUAVA</span></div>
+  </div>
+  <div class="hdr-r">
+    <button class="h-btn text" id="newBtn" onclick="goHome()" style="display:none">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Nuevo
+    </button>
+    <button class="h-btn icon" title="Historial">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    </button>
   </div>
 </div>
+</header>
 
-<div class="chat-messages" id="chatMessages">
-  <div class="msg-welcome">
-    <span class="icon"></span>
-    <strong>OMNIA</strong><br><br>
-    Todo el conocimiento de DUAVA. Una sola inteligencia. Hazme preguntas sobre productos, técnicas clínicas, importaciones y más.
-    <div class="sugerencias">
-      <button class="sug-btn" onclick="preguntaRapida('¿Qué resina me recomiendas para posteriores?')">Resinas para posteriores</button>
-      <button class="sug-btn" onclick="preguntaRapida('¿Qué productos tienen de Vigodent?')">Productos Vigodent</button>
-      <button class="sug-btn" onclick="preguntaRapida('¿Tienen Fill Magic en stock?')">Stock Fill Magic</button>
-      <button class="sug-btn" onclick="preguntaRapida('¿Para qué sirve la resina Fill Magic?')">Indicaciones Fill Magic</button>
+<div class="main" id="scroller">
+
+<!-- HOME -->
+<div class="home" id="homeV">
+<div class="wrap">
+
+  <div class="hero">
+    <div class="hero-eyebrow"><i></i><span>Plataforma activa</span></div>
+    <h1>OMNIA</h1>
+    <div class="hero-rule"></div>
+    <p>Una inteligencia de DUAVA<small>Todo el conocimiento de DUAVA. Una sola inteligencia.</small></p>
+  </div>
+
+  <div class="ask">
+    <div class="ask-box">
+      <div class="ask-top">
+        <textarea id="askIn" rows="1" placeholder="Preguntale a OMNIA..." oninput="autoResize(this)"></textarea>
+        <button class="ask-send" id="askBtn" onclick="sendHome()" title="Enviar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+      <div class="ask-bar">
+        <div class="ask-tools">
+          <button class="a-t" title="Archivo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/></svg></button>
+          <button class="a-t" title="Voz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></button>
+        </div>
+        <span class="ask-hint">Enter</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="largo-home">
+    <span>Largo:</span>
+    <button class="lh-btn" onclick="setLargoHome('corto',this)">Corta</button>
+    <button class="lh-btn active" onclick="setLargoHome('medio',this)">Media</button>
+    <button class="lh-btn" onclick="setLargoHome('largo',this)">Larga</button>
+  </div>
+
+  <div class="auto">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+    <span>OMNIA detecta automaticamente que especialistas consultar segun tu pregunta</span>
+  </div>
+
+  <div class="specs">
+    <div class="sec-head"><span class="sec-t">Especialistas</span><div class="sec-line"></div></div>
+    <div class="spec-grid">
+      <div class="s-card" onclick="openSpec('odontologia')"><div class="s-ico i-od"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 2 5 5 5 9c0 4 2 6 3 10 1 3 2 3 4 3s3 0 4-3c1-4 3-6 3-10 0-4-3-7-7-7z"/><path d="M10 13h4M12 11v4"/></svg></div><span class="s-name">Odontologia</span><span class="s-dsc">Materiales y tecnicas</span></div>
+      <div class="s-card" onclick="openSpec('comercio')"><div class="s-ico i-co"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10A15.3 15.3 0 0112 2z"/></svg></div><span class="s-name">Comercio Exterior</span><span class="s-dsc">Importaciones y logistica</span></div>
+      <div class="s-card" onclick="openSpec('estrategia')"><div class="s-ico i-es"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div><span class="s-name">Estrategia</span><span class="s-dsc">Planificacion y crecimiento</span></div>
+      <div class="s-card" onclick="openSpec('marketing')"><div class="s-ico i-mk"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><span class="s-name">Marketing</span><span class="s-dsc">Publicidad y ventas</span></div>
+      <div class="s-card" onclick="openSpec('finanzas')"><div class="s-ico i-fi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div><span class="s-name">Finanzas</span><span class="s-dsc">Control y rentabilidad</span></div>
+      <div class="s-card" onclick="openSpec('marca')"><div class="s-ico i-ma"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div><span class="s-name">Marca DUAVA</span><span class="s-dsc">Identidad y valores</span></div>
+      <div class="s-card" onclick="openSpec('base')"><div class="s-ico i-bk"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div><span class="s-name">Base Conocimiento</span><span class="s-dsc">Documentos y datos</span></div>
+      <div class="s-card" onclick="openSpec('admin')"><div class="s-ico i-ad"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><span class="s-name">Administracion</span><span class="s-dsc">Sistemas y procesos</span></div>
+    </div>
+  </div>
+
+  <div class="recent" id="recentSection">
+    <div class="sec-head"><span class="sec-t">Conversaciones guardadas</span><div class="sec-line"></div></div>
+    <div class="r-list" id="recentList"><div class="r-empty">No hay conversaciones guardadas</div></div>
+  </div>
+
+</div>
+</div>
+
+<!-- CHAT -->
+<div class="chat" id="chatV">
+  <div class="chat-bar">
+    <button class="bk" onclick="goHome()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+    <div class="chat-info">
+      <div class="chat-t" id="cTitle">OMNIA</div>
+      <div class="chat-st"><span class="live"></span> OMNIA activa</div>
+    </div>
+    <button class="save-btn" id="saveBtn" onclick="guardarChat()" style="display:none">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+      <span>Guardar</span>
+    </button>
+  </div>
+  <div class="msgs" id="chatMessages"><div class="msgs-in" id="messagesInner"></div></div>
+  <div id="chatSug" class="chat-sug" style="display:none"></div>
+  <div class="c-input">
+    <div class="c-in">
+      <div class="c-largo">
+        <button class="cl-btn" onclick="setLargo('corto',this)">Corta</button>
+        <button class="cl-btn active" onclick="setLargo('medio',this)">Media</button>
+        <button class="cl-btn" onclick="setLargo('largo',this)">Larga</button>
+      </div>
+      <div class="c-box">
+        <textarea class="c-field" id="inputPregunta" placeholder="Escribe tu mensaje..." rows="1" oninput="autoResize(this)" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();enviarPregunta()}"></textarea>
+        <button class="c-send" id="btnEnviar" onclick="enviarPregunta()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="chat-input-area">
-  <div class="largo-selector">
-    <button class="largo-btn" onclick="setLargo('corto',this)">Corta</button>
-    <button class="largo-btn active" onclick="setLargo('medio',this)">Media</button>
-    <button class="largo-btn" onclick="setLargo('largo',this)">Larga</button>
-  </div>
-  <div class="input-row">
-    <textarea class="input-field" id="inputPregunta" placeholder="Escribe tu pregunta..." rows="1" oninput="autoResize(this)" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();enviarPregunta()}"></textarea>
-    <button class="send-btn" id="btnEnviar" onclick="enviarPregunta()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-    </button>
-  </div>
+</div>
 </div>
 
 <script>
-var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwUn9Lqb-P5CdoZMkZAQ9ByyQfkSU5yMR0m6XsRwaFDkf2dS3NW46nT35YhTHWEfIOk/exec';
-var largoActual = 'medio';
+var SCRIPT_URL='https://script.google.com/macros/s/AKfycbwUn9Lqb-P5CdoZMkZAQ9ByyQfkSU5yMR0m6XsRwaFDkf2dS3NW46nT35YhTHWEfIOk/exec';
+var largoActual='medio';
+var historial=[];
+var conversacionId=null;
+var conversacionGuardada=false;
 
-function setLargo(largo, btn) {
-  largoActual = largo;
-  document.querySelectorAll('.largo-btn').forEach(function(b){b.classList.remove('active')});
-  btn.classList.add('active');
+var SPECIALISTS={odontologia:'Odontologia',comercio:'Comercio Exterior',estrategia:'Estrategia',marketing:'Marketing',finanzas:'Finanzas',marca:'Marca DUAVA',base:'Base de Conocimiento',admin:'Administracion'};
+
+var SUGS={
+odontologia:['Que resina me recomiendas para posteriores?','Cual es la diferencia entre composite y ceromero?','Que adhesivo funciona mejor con bulk fill?','Como hago un blanqueamiento seguro?','Que postes de fibra recomiendan?','Cual es la mejor marca de fresas?','Que cemento uso para coronas de zirconia?','Selladores de fosetas: resina o ionomero?','Tecnica de grabado acido paso a paso?','Resinas para estetica anterior?'],
+comercio:['Cuanto cuesta importar desde Brasil?','Que documentos necesito para importar?','Como funciona el proceso aduanero en Cuba?','Mejores proveedores dentales en LATAM?','Cuanto tarda un envio desde Brasil?','Como negociar precios con mayoristas?','Que es un INCOTERM y cuales se usan?','Como calcular el costo total de importacion?','Que productos conviene importar por volumen?','Riesgos de importar desde China vs Brasil?'],
+estrategia:['Como expandir DUAVA a otra provincia?','Que ciudades tienen mas potencial dental?','Como analizar la competencia local?','Cuando es el momento de abrir otra sucursal?','Como crear una ventaja competitiva?','Que KPIs debo monitorear semanalmente?','Como planificar el crecimiento a 12 meses?','Franquicia o sucursal propia?','Como evaluar si un nuevo producto vale la pena?','Alianzas estrategicas con laboratorios?'],
+marketing:['Como mejorar mi presencia en redes sociales?','Que tipo de contenido funciona para odontologia?','Como hacer publicidad efectiva con poco presupuesto?','WhatsApp Business: como usarlo mejor?','Como fidelizar clientes con seguimiento?','Que fotos de productos funcionan mejor?','Como crear promociones que vendan?','Marketing de boca en boca: como potenciarlo?','Necesito pagina web para mi negocio dental?','Como diferenciar Odonto Store de la competencia?'],
+finanzas:['Cual fue la ganancia del ultimo mes?','Que productos tienen mayor margen?','Como reducir costos sin perder calidad?','Cuanto debo invertir en stock este mes?','Como calcular el punto de equilibrio?','Que porcentaje debo reinvertir?','Como manejar precios cuando sube el dolar?','Cuanto gasto en comisiones de vendedores?','Cual es el producto mas rentable?','Como proyectar ventas para el proximo trimestre?'],
+marca:['Cual es la mision de DUAVA?','Como comunicar los valores de la marca?','Que hace unica a DUAVA frente a la competencia?','Como mantener consistencia visual en redes?','El tono de comunicacion de DUAVA?','Como contar la historia de DUAVA?','Que representa el nombre DUAVA?','Como evolucionar la marca sin perder identidad?','Presencia digital de DUAVA: que mejorar?','Como quiero que me recuerden los clientes?'],
+base:['Que documentos tengo en la biblioteca?','Como agregar nuevo conocimiento a OMNIA?','Que areas de conocimiento faltan?','Donde estan las fichas tecnicas de productos?','Como actualizar precios en la base?','Que normativas cubanas debo conocer?','Referencias bibliograficas disponibles?','Como organizar mejor la informacion?','Tengo datos de competidores guardados?','Como exportar el conocimiento acumulado?'],
+admin:['Como va el inventario de Odonto Store?','Cuantas ventas hubo esta semana?','Que productos estan por agotarse?','Como van los lotes en transito?','Gastos operativos del mes?','Cuanto stock queda en Holguin?','Cuanto stock queda en La Habana?','Que lotes estan por vencer?','Eficiencia de los vendedores este mes?','Proyeccion de ventas para este mes?']
+};
+
+function getWeekNum(){var n=new Date();var s=new Date(n.getFullYear(),0,1);return Math.floor((n-s)/604800000)}
+function getSugs(key){var l=SUGS[key];if(!l)return[];var w=getWeekNum(),st=(w*3)%l.length,r=[];for(var i=0;i<3;i++)r.push(l[(st+i)%l.length]);return r}
+
+function renderSugs(key){
+  var box=document.getElementById('chatSug');
+  var sugs=getSugs(key);
+  if(!sugs.length){box.style.display='none';return}
+  var h='';for(var i=0;i<sugs.length;i++)h+='<button class="cs-btn" onclick="preguntaRapida(\''+sugs[i].replace(/'/g,"\\'")+'\')">'+sugs[i]+'</button>';
+  box.innerHTML=h;box.style.display='flex';
 }
 
-function autoResize(el) {
-  el.style.height = 'auto';
-  el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,120)+'px'}
+
+function setLargo(l,btn){largoActual=l;document.querySelectorAll('.cl-btn').forEach(function(b){b.classList.remove('active')});btn.classList.add('active');document.querySelectorAll('.lh-btn').forEach(function(b){var m={Corta:'corto',Media:'medio',Larga:'largo'};b.classList.toggle('active',m[b.textContent]===l)})}
+function setLargoHome(l,btn){largoActual=l;document.querySelectorAll('.lh-btn').forEach(function(b){b.classList.remove('active')});btn.classList.add('active');document.querySelectorAll('.cl-btn').forEach(function(b){var m={Corta:'corto',Media:'medio',Larga:'largo'};b.classList.toggle('active',m[b.textContent]===l)})}
+
+function goHome(){
+  document.getElementById('homeV').classList.remove('off');
+  document.getElementById('chatV').classList.remove('on');
+  document.getElementById('newBtn').style.display='none';
+  document.getElementById('scroller').scrollTop=0;
+  cargarListaConversaciones();
+}
+function goChat(){
+  document.getElementById('homeV').classList.add('off');
+  document.getElementById('chatV').classList.add('on');
+  document.getElementById('newBtn').style.display='';
+  document.getElementById('inputPregunta').focus();
 }
 
-function preguntaRapida(texto) {
-  document.getElementById('inputPregunta').value = texto;
-  enviarPregunta();
+function openSpec(key){openChat('Consulta: '+SPECIALISTS[key]);renderSugs(key)}
+
+function openChat(title,convId){
+  document.getElementById('cTitle').textContent=title||'OMNIA';
+  document.getElementById('messagesInner').innerHTML='';
+  document.getElementById('chatSug').style.display='none';
+  historial=[];
+  conversacionId=convId||null;
+  conversacionGuardada=!!convId;
+  updateSaveBtn();
+  goChat();
 }
 
-function agregarMsg(texto, tipo) {
-  var container = document.getElementById('chatMessages');
-  var welcome = container.querySelector('.msg-welcome');
-  if (welcome) welcome.remove();
-
-  var div = document.createElement('div');
-  div.className = 'msg msg-' + tipo;
-
-  if (tipo === 'ia') {
-    div.innerHTML = '<span class="msg-label">OMNIA</span>' + texto +
-      '<div class="msg-actions"><button class="msg-action-btn" onclick="copiarRespuesta(this)">Copiar</button>' +
-      '<button class="msg-action-btn" onclick="compartirWhatsApp(this)">WhatsApp</button></div>';
-  } else {
-    div.textContent = texto;
-  }
-
-  container.appendChild(div);
-  container.scrollTop = container.scrollHeight;
-  return div;
-}
-
-function mostrarTyping() {
-  var container = document.getElementById('chatMessages');
-  var div = document.createElement('div');
-  div.className = 'typing';
-  div.id = 'typingIndicator';
-  div.innerHTML = '<span></span><span></span><span></span>';
-  container.appendChild(div);
-  container.scrollTop = container.scrollHeight;
-}
-
-function ocultarTyping() {
-  var el = document.getElementById('typingIndicator');
-  if (el) el.remove();
-}
-
-async function enviarPregunta() {
-  var input = document.getElementById('inputPregunta');
-  var texto = input.value.trim();
-  if (!texto) return;
-
-  var btn = document.getElementById('btnEnviar');
-  btn.disabled = true;
-  input.value = '';
-  input.style.height = 'auto';
-
-  agregarMsg(texto, 'user');
+function sendHome(){
+  var inp=document.getElementById('askIn');var texto=inp.value.trim();if(!texto)return;
+  inp.value='';inp.style.height='auto';
+  document.getElementById('cTitle').textContent=texto.substring(0,50);
+  document.getElementById('messagesInner').innerHTML='';
+  document.getElementById('chatSug').style.display='none';
+  historial=[];conversacionId=null;conversacionGuardada=false;updateSaveBtn();
+  goChat();
+  agregarMsg(texto,'user');
+  historial.push({rol:'user',texto:texto});
   mostrarTyping();
+  enviarAlGAS(texto);
+}
 
-  try {
-    var response = await fetch(SCRIPT_URL, {
-      method: 'POST',
-      headers: {'Content-Type': 'text/plain;charset=utf-8'},
-      body: JSON.stringify({pregunta: texto, largo: largoActual}),
-      redirect: 'follow'
-    });
+function preguntaRapida(texto){
+  document.getElementById('chatSug').style.display='none';
+  agregarMsg(texto,'user');
+  historial.push({rol:'user',texto:texto});
+  mostrarTyping();
+  enviarAlGAS(texto);
+}
 
-    var data = await response.json();
+function agregarMsg(texto,tipo){
+  var container=document.getElementById('messagesInner');
+  document.getElementById('chatSug').style.display='none';
+  var div=document.createElement('div');
+  div.className='msg msg-'+tipo;
+  if(tipo==='ia'){div.innerHTML='<span class="msg-label">OMNIA</span>'+texto+'<div class="msg-actions"><button class="msg-action-btn" onclick="copiarRespuesta(this)">Copiar</button><button class="msg-action-btn" onclick="compartirWhatsApp(this)">WhatsApp</button></div>'}
+  else div.textContent=texto;
+  container.appendChild(div);
+  document.getElementById('chatMessages').scrollTop=document.getElementById('chatMessages').scrollHeight;
+}
+
+function mostrarTyping(){var c=document.getElementById('messagesInner');var d=document.createElement('div');d.className='typing';d.id='typingIndicator';d.innerHTML='<span></span><span></span><span></span>';c.appendChild(d);document.getElementById('chatMessages').scrollTop=document.getElementById('chatMessages').scrollHeight}
+function ocultarTyping(){var el=document.getElementById('typingIndicator');if(el)el.remove()}
+
+function updateSaveBtn(){
+  var btn=document.getElementById('saveBtn');
+  if(historial.length===0){btn.style.display='none';return}
+  btn.style.display='';
+  if(conversacionGuardada){btn.classList.add('saved');btn.querySelector('span').textContent='Guardada'}
+  else{btn.classList.remove('saved');btn.querySelector('span').textContent='Guardar'}
+}
+
+async function enviarPregunta(){
+  var input=document.getElementById('inputPregunta');var texto=input.value.trim();if(!texto)return;
+  var btn=document.getElementById('btnEnviar');btn.disabled=true;input.value='';input.style.height='auto';
+  document.getElementById('chatSug').style.display='none';
+  agregarMsg(texto,'user');
+  historial.push({rol:'user',texto:texto});
+  updateSaveBtn();
+  mostrarTyping();
+  enviarAlGAS(texto);
+}
+
+async function enviarAlGAS(texto){
+  var btn=document.getElementById('btnEnviar');
+  try{
+    var response=await fetch(SCRIPT_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'pregunta',pregunta:texto,largo:largoActual,historial:historial}),redirect:'follow'});
+    var data=await response.json();
     ocultarTyping();
-
-    if (data.success) {
-      agregarMsg(formatearTexto(data.respuesta), 'ia');
-    } else {
-      agregarMsg('Error: ' + (data.error || 'No se pudo obtener respuesta'), 'error');
+    if(data.success){
+      agregarMsg(formatearTexto(data.respuesta),'ia');
+      historial.push({rol:'omnia',texto:data.respuesta});
+      updateSaveBtn();
+    }else{
+      agregarMsg('Error: '+(data.error||'No se pudo obtener respuesta'),'error');
     }
-  } catch (e) {
-    ocultarTyping();
-    agregarMsg('Error de conexión. Verifica tu internet e intenta de nuevo.', 'error');
-  }
-
-  btn.disabled = false;
-  input.focus();
+  }catch(e){ocultarTyping();agregarMsg('Error de conexion. Intenta de nuevo.','error')}
+  if(btn)btn.disabled=false;
+  document.getElementById('inputPregunta').focus();
 }
 
-function formatearTexto(texto) {
-  return texto
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\*(.*?)\*/g, '<em>$1</em>')
-    .replace(/\n/g, '<br>');
+function formatearTexto(t){return t.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\*(.*?)\*/g,'<em>$1</em>').replace(/\n/g,'<br>')}
+
+function copiarRespuesta(btn){var msg=btn.closest('.msg');var c=msg.cloneNode(true);var a=c.querySelector('.msg-actions');var l=c.querySelector('.msg-label');if(a)a.remove();if(l)l.remove();navigator.clipboard.writeText(c.textContent.trim()).then(function(){btn.textContent='Copiado';setTimeout(function(){btn.textContent='Copiar'},1500)})}
+function compartirWhatsApp(btn){var msg=btn.closest('.msg');var c=msg.cloneNode(true);var a=c.querySelector('.msg-actions');var l=c.querySelector('.msg-label');if(a)a.remove();if(l)l.remove();window.open('https://wa.me/?text='+encodeURIComponent(c.textContent.trim()),'_blank')}
+
+// ====== MEMORIA ======
+async function guardarChat(){
+  if(historial.length===0)return;
+  if(conversacionGuardada)return;
+  var titulo=document.getElementById('cTitle').textContent||'Sin titulo';
+  try{
+    var r=await fetch(SCRIPT_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'guardar',titulo:titulo,mensajes:historial}),redirect:'follow'});
+    var d=await r.json();
+    if(d.success){conversacionId=d.id;conversacionGuardada=true;updateSaveBtn()}
+    else{alert('Error al guardar: '+(d.error||''))}
+  }catch(e){alert('Error de conexion al guardar')}
 }
 
-function copiarRespuesta(btn) {
-  var msg = btn.closest('.msg');
-  var clone = msg.cloneNode(true);
-  var actions = clone.querySelector('.msg-actions');
-  var label = clone.querySelector('.msg-label');
-  if (actions) actions.remove();
-  if (label) label.remove();
-  var texto = clone.textContent.trim();
-  navigator.clipboard.writeText(texto).then(function(){
-    btn.textContent = 'Copiado';
-    setTimeout(function(){btn.textContent = 'Copiar'}, 1500);
-  });
+async function cargarListaConversaciones(){
+  try{
+    var r=await fetch(SCRIPT_URL+'?action=cargarLista&t='+Date.now());
+    var d=await r.json();
+    var box=document.getElementById('recentList');
+    if(!d.conversaciones||!d.conversaciones.length){box.innerHTML='<div class="r-empty">No hay conversaciones guardadas</div>';return}
+    var h='';
+    for(var i=0;i<d.conversaciones.length;i++){
+      var c=d.conversaciones[i];
+      h+='<div class="r-item" onclick="abrirConversacion(\''+c.id+'\',\''+c.titulo.replace(/'/g,"\\'")+'\')">';
+      h+='<div class="r-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>';
+      h+='<div class="r-body"><div class="r-title">'+c.titulo+'</div><div class="r-meta"><span>'+c.fecha+'</span></div></div>';
+      h+='<button class="r-del" onclick="event.stopPropagation();eliminarConv(\''+c.id+'\')" title="Eliminar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></button>';
+      h+='</div>';
+    }
+    box.innerHTML=h;
+  }catch(e){}
 }
 
-function compartirWhatsApp(btn) {
-  var msg = btn.closest('.msg');
-  var clone = msg.cloneNode(true);
-  var actions = clone.querySelector('.msg-actions');
-  var label = clone.querySelector('.msg-label');
-  if (actions) actions.remove();
-  if (label) label.remove();
-  var texto = clone.textContent.trim();
-  window.open('https://wa.me/?text=' + encodeURIComponent(texto), '_blank');
+async function abrirConversacion(id,titulo){
+  try{
+    var r=await fetch(SCRIPT_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'cargarConversacion',id:id}),redirect:'follow'});
+    var d=await r.json();
+    if(!d.success){alert('Error al cargar');return}
+    openChat(titulo,id);
+    document.getElementById('messagesInner').innerHTML='';
+    historial=d.mensajes||[];
+    for(var i=0;i<historial.length;i++){
+      var m=historial[i];
+      if(m.rol==='user')agregarMsg(m.texto,'user');
+      else agregarMsg(formatearTexto(m.texto),'ia');
+    }
+    conversacionGuardada=true;updateSaveBtn();
+  }catch(e){alert('Error de conexion')}
 }
 
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('./sw.js').catch(function(){});
+async function eliminarConv(id){
+  if(!confirm('Eliminar esta conversacion?'))return;
+  try{
+    await fetch(SCRIPT_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'eliminar',id:id}),redirect:'follow'});
+    cargarListaConversaciones();
+  }catch(e){}
 }
+
+document.getElementById('askIn').addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendHome()}});
+if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(function(){});}
+
+cargarListaConversaciones();
 </script>
 </body>
 </html>
